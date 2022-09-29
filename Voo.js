@@ -10,12 +10,18 @@ class Cliente{
 
     DefinirNome(nome){
         this.#Nome = nome
+        if(this.#Nome.lenght > 50){
+            console.log("Por favor digite menos de 50 caracteres.")
+        }
     }
     BuscarNome(){
         return this.#Nome
     }
     DefinirCpf(cpf){
         this.#Cpf = cpf
+        if(this.#Nome.lenght > 11){
+            console.log("Por favor digite menos de 11 caracteres.")
+        }
     }
     BuscarCpf(){
         return this.#Cpf
@@ -136,12 +142,18 @@ class PassagemArea{
     }
     DefinirPrimeiraClasse(primeiraClasse){
         this.#PrimeiraClasse = primeiraClasse
+        if(primeiraClasse != true || primeiraClasse != false){
+            console.log("Por favor insira apenas valores booleanos.")
+        }
     }
     BuscarPrimeiraClasse(){
         return this.#PrimeiraClasse
     }
     DefinirValor(valor){
         this.#Valor = valor
+        if(valor < 0){
+            console.log("Digite um valor acima de 0.")
+        }
     }
     BuscarValor(){
         return this.#Valor
