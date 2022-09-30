@@ -1,11 +1,14 @@
+let arrayCliente = []
+let arrayVoo = []
+let arrayPacoteViagem = []
 class Cliente{
     #Nome
     #Cpf
     #DataNascimento
     constructor(nome,cpf,dataNascimento){
-        this.Nome = nome
-        this.Cpf = cpf
-        this.DataNascimento = dataNascimento
+        this.DefinirNome(nome)
+        this.DefinirCpf(cpf)
+        this.DefinirDataNascimento(dataNascimento)
     }
 
     DefinirNome(nome){
@@ -39,12 +42,12 @@ class PacoteViagem{
     #Titular
     #PassagemIda
     #PassagemVolta
-    ValorTotal
+    #ValorTotal
     constructor(passagemIda,passagemVolta,valorTotal){
         this.#Titular = this.#PassagemIda.Passageiro
-        this.#PassagemIda = passagemIda
-        this.#PassagemVolta = passagemVolta
-        this.#ValorTotal = valorTotal
+        this.DefinirPassagemIda(passagemIda)
+        this.DefinirPassagemVolta(passagemVolta)
+        this.DefinirValorTotal(valorTotal)
     }
     DefinirTitular(titular){
         this.#Titular = titular
@@ -64,6 +67,12 @@ class PacoteViagem{
     BuscarPassagemVolta(){
         return this.#PassagemVolta
     }
+    DefinirValorTotal(valorTotal){
+        this.#ValorTotal = valorTotal
+    }
+    BuscarValorTotal(){
+        return this.#ValorTotal
+    }
 }
 
 class Voo{
@@ -74,12 +83,12 @@ class Voo{
     #LocalPartida
     #LocalDestino
     constructor(empresa,numero,data,horario,localPartida,localDestino){
-        this.#Empresa = empresa
-        this.#Numero = numero
-        this.#Data = data
-        this.#Horario = horario
-        this.#LocalPartida = localPartida
-        this.#LocalDestino = localDestino
+        this.DefinirEmpresa(empresa)
+        this.DefinirNumero(numero)
+        this.DefinirData(data)
+        this.DefinirHorario(horario)
+        this.DefinirLocalPartida(localPartida)
+        this.DefinirLocalDestino(localDestino)
     }
 
     DefinirEmpresa(empresa){
@@ -127,11 +136,11 @@ class PassagemArea{
     #Passageiro
     #Voo
     constructor(assento,primeiraClasse,valor,passageiro,voo){
-        this.#Assento = assento
-        this.#PrimeiraClasse = primeiraClasse
-        this.#Valor = valor
-        this.#Passageiro = passageiro
-        this.#Voo = voo
+        this.DefinirAssento(assento)
+        this.DefinirPrimeiraClasse(primeiraClasse)
+        this.DefinirValor(valor)
+        this.DefinirPassageiro(passageiro)
+        this.DefinirVoo(voo)
     }
 
     DefinirAssento(assento){
@@ -182,8 +191,37 @@ class PassagemArea{
         console.log("Passagem em nome de ", this.Passageiro, "no assento", this.Assento, "do voo", this.Voo, "com o destino para", this.Voo.LocalDestino)
     }
 }
-let vooUm = new Voo("1252","2","23/05","15:00","Brazil","Mexico")
-let passagemAreaUm = new PassagemArea(2,true,2500,"Jose",vooUm)
-let clienteUm = new Cliente("Jose","03156416","28/09/1845")
-passagemAreaUm.CalcularValor(passagemAreaUm.valor)
-passagemAreaUm.ExibirResumo()
+// let vooUm = new Voo("1252","2","23/05","15:00","Brazil","Mexico")
+// let passagemAreaUm = new PassagemArea(2,true,2500,"Jose",vooUm)
+// let clienteUm = new Cliente("Jose","03156416","28/09/1845")
+// passagemAreaUm.CalcularValor(passagemAreaUm.valor)
+// passagemAreaUm.ExibirResumo()
+
+
+function CadastrarCliente(){
+    let nome = prompt("Digite seu nome: ")
+    let cpf = prompt("Digite seu cpf: ")
+    let dataNascimento = prompt("Digite sua data de nascimento: ")
+    let cliente = new Cliente(nome,cpf,dataNascimento)
+    arrayCliente.push(cliente)
+}
+
+function CadastrarVoo(){
+    let empresa = prompt("Digite o nome da Empresa: ")
+    let numero = prompt("Digite o numero do voo: ")
+    let data = prompt("Digite a data: ")
+    let horario = prompt("Digite o horario: ")
+    let localPartida = prompt("Digite o local de partida: ")
+    let localDestino = prompt("Digite o local de destino: ")
+    let voo = new Voo(empresa,numero,data,horario,localPartida,localDestino)
+    arrayVoo.push(voo)
+}
+
+function PacoteViagem(){
+    let titular = prompt("Digite o nome do Titular:")
+    let passagemIda = prompt("Digite a passagem de ida:")
+    let passagemVolta = prompt("Digite a passagem de volta: ")
+    let valorTotal = prompt("Digite o valor total: ")
+    let pacoteViagem = new PacoteViagem()
+    arrayPacoteViagem = pacoteViagem(titular,passagemIda,passagemVolta,valorTotal)
+}
